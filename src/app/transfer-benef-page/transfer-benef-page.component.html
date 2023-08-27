@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>Virement Bénéficiaire</h1>
+    <mat-divider class="my-4"></mat-divider>
+
+    <form class="example-form">
+        <div class="row">
+            <div class="col">
+        <mat-form-field class="example-full-width">
+            <mat-label>Compte à débiter</mat-label>
+            <mat-select>
+              <mat-option>
+                XXXX-XXXXX-XXXXX
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Devise</mat-label>
+            <mat-select>
+              <mat-option>
+                TND
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>RIB Bénéficiaire</mat-label>
+            <input matInput placeholder="XXXX-XXXX-XXXX-XXXX">
+          </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Montant</mat-label>
+                <input type="number" matInput placeholder="250">
+              </mat-form-field>
+            
+              <mat-form-field class="example-full-width">
+                <mat-label>Motif</mat-label>
+                <input matInput placeholder="...">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 col-sm-12">
+                <button mat-raised-button color="accent" class="p-3 mx-2 mt-3 w-100">Approuver</button>
+            </div>
+            <div class=" col-md-6 col-sm-12 ">
+                <button mat-stroked-button color="accent" class="p-3 mx-2 mt-3 w-100">Vider</button>
+            </div>
+        </div>
+       
+       
+    </form>
+</div>

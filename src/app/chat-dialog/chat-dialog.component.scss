@@ -1,0 +1,89 @@
+.to {
+    align-self: flex-end;
+    background-color: #248bf5;
+    color: #fff; 
+  }
+  
+  .to::before {
+    border-bottom-left-radius: 0.8rem 0.7rem;
+    border-right: 1rem solid #248bf5;
+    right: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+  
+  .to::after {
+    background-color: #fff;
+    border-bottom-left-radius: 0.5rem;
+    right: -40px;
+    transform:translate(-30px, -2px);
+    width: 10px;
+  }
+.imessage {
+    background-color: #fff;
+    border: 1px solid #e5e5ea;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    font-family: "SanFrancisco";
+    font-size: 1.25rem;
+    margin: 0 auto 1rem;
+    max-width: 600px;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .imessage div {
+    border-radius: 1.15rem;
+    line-height: 1.25;
+    max-width: 75%;
+    padding: 0.5rem .875rem;
+    position: relative;
+    word-wrap: break-word;
+    margin-top: 15px;
+  }
+  
+  .imessage div::before,
+  .imessage div::after {
+    bottom: -0.1rem;
+    content: "";
+    height: 1rem;
+    position: absolute;
+  }
+.from {
+    align-items: flex-start;
+    background-color: #e5e5ea;
+    color: #000;
+  }
+  
+ .from:before {
+    border-bottom-right-radius: 0.8rem 0.7rem;
+    border-left: 1rem solid #e5e5ea;
+    left: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+  
+  .from::after {
+    background-color: #fff;
+    border-bottom-right-radius: 0.5rem;
+    left: 20px;
+    transform: translate(-30px, -2px);
+    width: 10px;
+  }
+
+  .autocomplete-list {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+    margin-top: 5px;
+  }
+  
+  .autocomplete-item {
+    padding: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }

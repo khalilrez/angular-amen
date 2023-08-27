@@ -1,0 +1,40 @@
+<div class="container p-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="column"></div>
+          <div class="column column-50">
+            <div class="imessage">
+              <div class="message from">
+                Je Suis l'assistante intelligente d'AmenBank, posez moi une question ! Notre discussion sera supprimé après votre sortie 😉
+              </div>
+              <ng-container *ngFor="let message of messages">
+                <div class="message" [ngClass]="{ from: message.author === 'bot', to: message.author === 'user' }">
+                  {{ message.content }}
+                </div>
+              </ng-container>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                [(ngModel)]="value"
+                (input)="handleInput()"
+                type="text"
+                class="form-control"
+                placeholder="Envoyer votre message..."
+                aria-label="Envoyer votre message..."
+                aria-describedby="button-addon2"
+              >
+              <div class="autocomplete-list" *ngIf="showAutocomplete">
+                <div class="autocomplete-item" *ngFor="let suggestion of filteredSuggestions" (click)="selectAutocompleteItem(suggestion)">
+                  {{ suggestion }}
+                </div>
+              </div>
+              <button mat-raised-button (click)="sendMessage()" id="button-addon2">Send</button>
+            </div>
+          </div>
+          <div class="column"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

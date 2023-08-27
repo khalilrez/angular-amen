@@ -1,0 +1,15 @@
+.mat-toolbar {
+    color: white; /* Replace with your desired text color */
+  }
+  
+  /* If you want to change the color of the icon as well */
+  .mat-toolbar  .mat-icon {
+    color: white; /* Replace with your desired icon color */
+  }
+  .mat-expansion-panel-header{
+    padding: 0 16px;
+  }
+
+  .mat-mdc-list-base {
+    --mdc-list-list-item-one-line-container-height: 60px;
+  }

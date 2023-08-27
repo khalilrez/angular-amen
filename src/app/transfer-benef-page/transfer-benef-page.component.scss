@@ -1,0 +1,24 @@
+.example-form {
+    min-width: 150px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .container{
+    height: 50vh;
+}
+.container::before{
+    content: "";
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+    background-image: url("/assets/transfer.png");
+    background-position: 100% 100%; /*Positioning*/
+    background-size: 40%;
+    background-repeat: no-repeat; /*Prevent showing multiple background images*/
+    opacity: 0.3;
+}
