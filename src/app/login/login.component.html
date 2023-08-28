@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-12 mt-3">
+            <mat-card>
+                <mat-card-content>
+                    <div *ngIf="isLoggedIn">
+                        <h1>Vous êtes connecté</h1>
+                        <button mat-raised-button routerLink="/account">Retour</button>
+                    </div>
+                    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+                        class="container" novalidate>
+                        <h2>Accéder à mes comptes</h2>
+                        <mat-error *ngIf="isLoginFailed">
+                            The username and password were not recognized
+                        </mat-error>
+                        <div class="row">
+                            <mat-form-field>
+                                <div class="form-floating">
+
+                                    <input matInput class="w-100 form-control" name="username" required
+                                        type="text" [(ngModel)]="form.username" required #username="ngModel" placeholder="Username"
+                                        [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                                    <label for="floatingInput">Username</label>
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field>
+                                <div class="form-floating">
+                                    <input type="password" class="w-100" class="form-control" name="password"
+                                        [(ngModel)]="form.password" required placeholder="Password" minlength="6"
+                                        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                                        required>
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Connexion</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-6 bg-img col-12 mt-3">
+            <h3>Pour vous permettre de réaliser et de gérer au mieux vos opérations bancaires, nous vous proposons un
+                outil de pointe.</h3>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-success text-white">Actualités</div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">Face à la situation engendrée par le COVID-19, AMEN BANK continue à se
+                        mobiliser afin d'apporter tout son soutien à sa clientèle entreprise par la création d'une
+                        plateforme électronique Near.
+                        Cliquer ici pour accéder à votre plateforme Near, afin de pouvoir bénéficier des crédits de
+                        soutien et de prorogation..</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card mb-3 iso-img">
+                <div class="card-header bg-success text-white">Plus d'informations</div>
+                <div class="card-body ">
+                    <a class="nav-link text-success my-3" href="#"><i class="bi bi-box-arrow-up-right"></i><span
+                            class="mx-1">Téléchargez le contrat d'abonnement</span></a>
+                    <a class="nav-link text-success my-3" href="#"><i class="bi bi-box-arrow-up-right"></i><span
+                            class="mx-1">Tarification appliquée</span></a>
+                    <a class="nav-link text-success my-3" href="#"><i class="bi bi-box-arrow-up-right"></i><span
+                            class="mx-1">Notice Protection des données Personnelles</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-success text-white">Contactez-nous</div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="bi bi-building"></i><span class="mx-1 small">71 833
+                                    517</span></li>
+                            <li class="list-group-item"><i class="bi bi-telephone"></i><span class="mx-1">71 148
+                                    000</span></li>
+                            <li class="list-group-item"><i class="bi bi-envelope"></i><span
+                                    class="mx-1 small">amenbank@amenbank.com.tn</span></li>
+                            <li class="list-group-item"><i class="bi bi-pin"></i><span class="mx-1 small">AMEN BANK -
+                                    Av.Mohamed V 1002 Tunis</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

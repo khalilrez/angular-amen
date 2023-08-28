@@ -6,7 +6,7 @@
           <div class="column column-50">
             <div class="imessage">
               <div class="message from">
-                Je Suis l'assistante intelligente d'AmenBank, posez moi une question ! Notre discussion sera supprimé après votre sortie 😉
+                Je Suis votre assistante intelligente, posez moi une question ! Notre discussion sera supprimé après votre sortie 😉
               </div>
               <ng-container *ngFor="let message of messages">
                 <div class="message" [ngClass]="{ from: message.author === 'bot', to: message.author === 'user' }">

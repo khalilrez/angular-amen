@@ -1,29 +1,32 @@
-<!-- Toolbar -->
-<mat-toolbar color="primary" class="header">
+<mat-toolbar color="primary" class="header" >
   <div>Material Theme</div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
 </mat-toolbar>
-<mat-sidenav-container>
+<mat-sidenav-container> 
   <!-- Sidenav -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true" 
     [fixedTopGap]>
-    <mat-nav-list>
+    <mat-nav-list *ngIf="currentUrl !== '/login'">
       <a mat-list-item routerLink="/account">
-        <mat-icon>account_balance_wallet</mat-icon> Comptes
+        <mat-icon>account_balance_wallet</mat-icon>Comptes
       </a>
       <mat-expansion-panel class="mat-elevation-z0">
         <mat-expansion-panel-header>
-          <mat-icon>payments </mat-icon> Virement
+          <mat-icon>payments </mat-icon>Virement
         </mat-expansion-panel-header>
         <a mat-list-item routerLink="/virement-cac">Compte à Compte</a>
         <a mat-list-item routerLink="/virement-benef">Bénéficiaire</a>
       </mat-expansion-panel>
       <a mat-list-item routerLink="/chatbot">
-        <mat-icon>smart_toy</mat-icon> Assistant AI 
+        <mat-icon>face_4</mat-icon>Assistante AI 
       </a>
+      <a mat-list-item (click)="logout()"><mat-icon>logout</mat-icon>Déconnecter</a>
     </mat-nav-list>
+
+    
+
   </mat-sidenav>
   <!-- Main content -->
   <mat-sidenav-content>

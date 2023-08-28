@@ -1,0 +1,28 @@
+body{
+    width: 100%;
+}
+
+.bg-img{
+    color: white;
+    height: 427px;;
+    background: linear-gradient( rgba(16, 55, 132, 0.45), rgba(16, 55, 132, 0.45)), url(/assets/home-image.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+}
+.card{
+    height: 350px;
+    width: 100%;
+    max-width: 100%!important;
+}
+.iso-img{
+    background-image: url(/assets/ISO.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}

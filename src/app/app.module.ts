@@ -13,6 +13,13 @@ import { TransferCacPageComponent } from './transfer-cac-page/transfer-cac-page.
 import { TransferBenefPageComponent } from './transfer-benef-page/transfer-benef-page.component';
 import { ChatModule } from './chat/chat.module';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +28,16 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     BankAccountPageComponent,
     TransferCacPageComponent,
     TransferBenefPageComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent,
+    BoardAdminComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule,
     ChatModule,
     AppRoutingModule,
@@ -33,7 +46,7 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     ReactiveFormsModule,
     AngularMaterialModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
