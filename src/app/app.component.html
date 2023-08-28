@@ -1,12 +1,15 @@
-<mat-toolbar color="primary" class="header" >
+<mat-toolbar color="primary" class="header">
   <div>Material Theme</div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
 </mat-toolbar>
-<mat-sidenav-container> 
-  <!-- Sidenav -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true" 
+<mat-sidenav-container>
+  <!-- ========== Start SideMenu Display ========== -->
+  <!--
+    *ngIf checks if current url is /login or not, and displays the sidemenu if it isn't
+  -->
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
     [fixedTopGap]>
     <mat-nav-list *ngIf="currentUrl !== '/login'">
       <a mat-list-item routerLink="/account">
@@ -20,19 +23,18 @@
         <a mat-list-item routerLink="/virement-benef">Bénéficiaire</a>
       </mat-expansion-panel>
       <a mat-list-item routerLink="/chatbot">
-        <mat-icon>face_4</mat-icon>Assistante AI 
+        <mat-icon>face_4</mat-icon>Assistante AI
       </a>
       <a mat-list-item (click)="logout()"><mat-icon>logout</mat-icon>Déconnecter</a>
     </mat-nav-list>
-
-    
-
   </mat-sidenav>
+<!-- ========== End SideMenu Display ========== -->
+
   <!-- Main content -->
   <mat-sidenav-content>
     <!-- Applying the mat-tyography class adds styles for native elements. -->
     <section class="mat-typography title-group">
       <router-outlet></router-outlet>
-    </section>  
+    </section>
   </mat-sidenav-content>
 </mat-sidenav-container>
