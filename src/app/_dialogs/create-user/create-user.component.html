@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Nouveau utilistateur</h1>
+<form class="example-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+    <div mat-dialog-content>
+        novalidate>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nom</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Prenom</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>CIN</mat-label>
+            <input matInput name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20"
+                #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+        </mat-form-field>
+        <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors['required']">Username is required</div>
+            <div *ngIf="username.errors['minlength']">
+                Username must be at least 3 characters
+            </div>
+            <div *ngIf="username.errors['maxlength']">
+                Username must be at most 20 characters
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" type="email" [(ngModel)]="form.email" required email #email="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+        </mat-form-field>
+        <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Email is required</div>
+            <div *ngIf="email.errors['email']">
+                Email must be a valid email address
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Fermer</button>
+        <button mat-button cdkFocusInitial type="submit">Ajouter</button>
+    </div>
+</form>
