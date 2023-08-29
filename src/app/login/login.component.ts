@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      console.log(this.roles)
     }
   }
 
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
+        console.log(this.roles)
         this.router.navigateByUrl("/")
       },
       error: err => {

@@ -35,7 +35,7 @@ export class AppComponent {
       this.opened = false;
     } else {
       this.sidenav.fixedTopGap = 55;
-      this.opened = true;
+      this.opened = false;
     }
 
 
@@ -77,6 +77,7 @@ export class AppComponent {
         console.log(res);
         this.storageService.clean();
         this.router.navigate(["login"])
+        location.reload();
       },
       error: err => {
         console.log(err);

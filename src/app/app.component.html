@@ -1,17 +1,19 @@
 <mat-toolbar color="primary" class="header">
-  <div>Material Theme</div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
+  <div><img src="/assets/logo.png" alt="amen bank logo" width="150" srcset=""></div>
+
 </mat-toolbar>
 <mat-sidenav-container>
   <!-- ========== Start SideMenu Display ========== -->
   <!--
     *ngIf checks if current url is /login or not, and displays the sidemenu if it isn't
   -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true" 
     [fixedTopGap]>
-    <mat-nav-list *ngIf="currentUrl !== '/login'">
+    <div *ngIf="currentUrl !== '/login' && currentUrl !== '/'">
+    <mat-nav-list>
       <a mat-list-item routerLink="/account">
         <mat-icon>account_balance_wallet</mat-icon>Comptes
       </a>
@@ -27,6 +29,7 @@
       </a>
       <a mat-list-item (click)="logout()"><mat-icon>logout</mat-icon>Déconnecter</a>
     </mat-nav-list>
+    </div>
   </mat-sidenav>
 <!-- ========== End SideMenu Display ========== -->
 

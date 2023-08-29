@@ -26,6 +26,16 @@ export class StorageService {
     return {};
   }
 
+  public isAdmin(): boolean{
+    const userString = window.sessionStorage.getItem(USER_KEY);
+    const user = JSON.parse(userString);
+    if(user.roles.includes('ROLE_ADMIN')){
+      return true
+    }else{
+      return false
+    }
+  }
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {

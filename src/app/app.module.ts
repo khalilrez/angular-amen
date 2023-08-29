@@ -20,6 +20,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { CreateUserComponent } from './_dialogs/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     ProfileComponent,
     RegisterComponent,
     BoardAdminComponent,
-    ForbiddenComponent
-  ],
+    ForbiddenComponent,
+    CreateUserComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -46,7 +47,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     ReactiveFormsModule,
     AngularMaterialModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
