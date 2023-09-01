@@ -12,21 +12,9 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + '/test/all', { responseType: 'text' });
-  }
-
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + '/test/user', { responseType: 'text' });
-  }
-
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + '/test/admin', { responseType: 'text' });
-  }
-
-  getAllUsers(): Observable<IUser>{
+  getAllUsers(): Observable<IUser[]>{
     const URL = `${API_URL}/users`;
-    return this.http.get<IUser>(URL,{withCredentials:true});
+    return this.http.get<IUser[]>(URL,{withCredentials:true});
   }
 
   deleteUser(id: number) {

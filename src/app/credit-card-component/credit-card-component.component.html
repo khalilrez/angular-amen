@@ -31,9 +31,10 @@
           </svg>
         </div>
         <div class="card-chip"></div>
-        <div class="card-holder">John Doe</div>
-        <div class="card-number">1234 5678 9000 1234</div>
-        <div class="card-valid">12/24</div>
+        <div class="card-holder" *ngIf="account.isActive">Active</div>
+        <div class="card-holder" *ngIf="!account.isActive">Inactive</div>
+        <div class="card-number">{{account.rib}}</div>
+        <div class="card-valid">SOLDE : {{account.balance}}</div>
       </div>
     </div>
   </div>

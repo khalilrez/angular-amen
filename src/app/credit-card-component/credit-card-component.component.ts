@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IBankAccount } from '../_models/ibank-account';
 
 @Component({
   selector: 'app-credit-card-component',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./credit-card-component.component.scss']
 })
 export class CreditCardComponentComponent {
-
+  @Input() account:IBankAccount;
+  constructor(){}
 }

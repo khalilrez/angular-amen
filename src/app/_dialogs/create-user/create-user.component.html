@@ -1,14 +1,16 @@
-<h1 mat-dialog-title>Nouveau utilistateur</h1>
-<form class="example-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+<h1 mat-dialog-title>Utilisteur</h1>
+<form class="example-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
     <div mat-dialog-content>
-        novalidate>
-        <mat-form-field class="example-full-width">
-            <mat-label>Nom</mat-label>
-            <input matInput>
-        </mat-form-field>
+        
         <mat-form-field class="example-full-width">
             <mat-label>Prenom</mat-label>
-            <input matInput>
+            <input matInput name="firstName" [(ngModel)]="form.firstName" required minlength="2" maxlength="20"
+            #firstName="ngModel">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nom</mat-label>
+            <input matInput name="lastName" [(ngModel)]="form.lastName" required minlength="2" maxlength="20"
+            #lastName="ngModel">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>CIN</mat-label>
@@ -39,6 +41,6 @@
     </div>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Fermer</button>
-        <button mat-button cdkFocusInitial type="submit">Ajouter</button>
+        <button mat-button cdkFocusInitial color="primary" type="submit">Ajouter</button>
     </div>
 </form>

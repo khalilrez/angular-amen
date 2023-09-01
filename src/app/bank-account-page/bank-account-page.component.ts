@@ -1,9 +1,17 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { IBankAccount } from '../_models/ibank-account';
+import { Subscription } from 'rxjs';
+import { bankAccountService } from '../_services/bank-account.service';
+import { Router } from '@angular/router';
+import { StorageService } from '../_services/storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { IUser } from '../_models/user';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AdminBankAccountDialogComponent } from '../_dialogs/admin-bank-account-dialog/admin-bank-account-dialog.component';
 
 @Component({
   selector: 'app-bank-account-page',
@@ -11,19 +19,38 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
   styleUrls: ['./bank-account-page.component.scss']
 })
 export class BankAccountPageComponent {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  user: IUser;
+  private subs = new Subscription();
+  displayedColumns: string[] = ['rib', 'iban', 'balance', 'description', 'isActive', 'action']
+  dataArray: any;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  public dataSource: MatTableDataSource<IBankAccount>
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  constructor(private bankAccountService: bankAccountService, private router: Router, private storageService: StorageService, private _snackBar: MatSnackBar,
+     private dialog: MatDialog) {}
+
+     ngOnInit(): void {
+      this.user = this.storageService.getUser();
+      this.subs.add(this.bankAccountService.getAllBankAccounts()
+      .subscribe((res)=> {
+        console.log(res);
+        this.dataArray = res;
+        this.dataSource = new MatTableDataSource<IBankAccount>(this.dataArray);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      }));
+    }
+    ngOnDestroy() {
+      if (this.subs) {
+        this.subs.unsubscribe();
+      }
+    }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -38,60 +65,19 @@ export class BankAccountPageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+  public createAccountDialog(account:any){
+    console.log(account)
+    let dialogRef = this.dialog.open(AdminBankAccountDialogComponent,{data:{account,userId:this.user.id}});
+    dialogRef.afterClosed().subscribe(()=>{
+      window.location.reload();
+    })
+  }
+
+  public disableAccount(account:any){
+    account.isActive = !account.isActive;
+    this.bankAccountService.updateBankAccount(account).subscribe((res)=>{
+      console.log(res)
+    });
+  }
+  
 }
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];

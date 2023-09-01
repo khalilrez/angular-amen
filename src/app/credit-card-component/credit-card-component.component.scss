@@ -4,7 +4,7 @@
     height: 200px;
     border-radius: 10px;
     perspective: 1000px;
-  
+  transition: all 500ms ease;
    
   
     &-inner {
@@ -240,7 +240,9 @@
         color: rgb(238, 236, 236);
       }
     }
-  
+  &:hover{
+    transform: skew(-4deg);
+  }
     &-seccode {
       position: absolute;
       top: 125px;

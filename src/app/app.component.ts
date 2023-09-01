@@ -11,6 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
+  isAdmin = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
@@ -38,7 +39,7 @@ export class AppComponent {
       this.opened = false;
     }
 
-
+    this.isAdmin = this.storageService.isAdmin();
     this.isLoggedIn = this.storageService.isLoggedIn();
 
     if (this.isLoggedIn) {
@@ -76,8 +77,11 @@ export class AppComponent {
       next: res => {
         console.log(res);
         this.storageService.clean();
-        this.router.navigate(["login"])
-        location.reload();
+        this.isLoggedIn = false;
+        this.isAdmin = false;
+        this.sidenav.toggle();
+        this.opened=false;
+        this.router.navigate(["/login"])
       },
       error: err => {
         console.log(err);

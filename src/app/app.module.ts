@@ -21,6 +21,8 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CreateUserComponent } from './_dialogs/create-user/create-user.component';
+import { AdminUserInfoComponent } from './admin-user-info/admin-user-info.component';
+import { AdminBankAccountDialogComponent } from './_dialogs/admin-bank-account-dialog/admin-bank-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { CreateUserComponent } from './_dialogs/create-user/create-user.componen
     RegisterComponent,
     BoardAdminComponent,
     ForbiddenComponent,
-    CreateUserComponent  ],
+    CreateUserComponent,
+    AdminUserInfoComponent,
+    AdminBankAccountDialogComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,

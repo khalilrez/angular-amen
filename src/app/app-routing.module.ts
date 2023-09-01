@@ -11,18 +11,20 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AuthGuard } from './_services/auth-guard.service';
 import { RoleGuard } from './_services/role-guard.service';
+import { AdminUserInfoComponent } from './admin-user-info/admin-user-info.component';
 
 const routes: Routes = [
   {path:"account",component:BankAccountPageComponent,canActivate: [AuthGuard]},
   {path:"virement-cac",component:TransferCacPageComponent ,canActivate: [AuthGuard]},
   {path:"virement-benef",component:TransferBenefPageComponent ,canActivate: [AuthGuard]},
   {path:"chatbot",component:ChatPageComponent ,canActivate: [AuthGuard]},
-  { path: 'login', component: LoginComponent  },
+  { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard] },
   { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard,RoleGuard]},
+  { path: 'admin/user/details', component: AdminUserInfoComponent,canActivate: [AuthGuard,RoleGuard] },
   { path: 'notauthorized', component: ForbiddenComponent },
-  {path:'',redirectTo:"login", pathMatch:"full"}
+  {path:'**',redirectTo:"login", pathMatch:"full"}
 ];
 
 @NgModule({

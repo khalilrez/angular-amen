@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject} from 'rxjs'
 
 const USER_KEY = 'auth-user';
 
@@ -44,4 +45,11 @@ export class StorageService {
 
     return false;
   }
+
+  private selectedUser = new BehaviorSubject(null);
+  getSelectedUser = this.selectedUser.asObservable();
+  setSelectedUser(user:any){
+    localStorage.setItem("selectedUser",JSON.stringify(user));
+  } 
+  
 }

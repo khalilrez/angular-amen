@@ -10,8 +10,9 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent {
+  updating=false;
   constructor(public dialogRef: MatDialogRef<CreateUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IUser,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private authService: AuthService,
     private _snackBar: MatSnackBar) { }
     onNoClick(): void {
@@ -19,8 +20,11 @@ export class CreateUserComponent {
     }
 
     form: any = {
-      username: null,
+      username: null ,
       email: null,
+      firstName: null,
+      lastName: null,
+
     };
     isSuccessful = false;
     isSignUpFailed = false;
@@ -28,13 +32,22 @@ export class CreateUserComponent {
   
   
     ngOnInit(): void {
+      if(this.data != null){
+        this.updating= true
+        this.form = {
+          username: this.data.username ,
+          email: this.data.email,
+          firstName: this.data.firstName,
+          lastName: this.data.lastName,
+        };
+      }
     }
   
     onSubmit(): void {
-      const { username, email } = this.form;
+      const { firstName,lastName,username, email } = this.form;
       let password = username;
-  
-      this.authService.register(username, email, password).subscribe({
+      if(!this.updating){
+      this.authService.register(firstName,lastName,username, email, password).subscribe({
         next: data => {
           console.log(data);
           this._snackBar.open(`Success`, 'Close', {
@@ -50,5 +63,6 @@ export class CreateUserComponent {
           });    
         }
       });
+    }
     }
   }

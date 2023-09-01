@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from '../_dialogs/create-user/create-user.component';
+import { Router } from '@angular/router';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-board-admin',
@@ -17,7 +19,7 @@ import { CreateUserComponent } from '../_dialogs/create-user/create-user.compone
 })
 export class BoardAdminComponent implements OnInit , OnDestroy {
   private subs = new Subscription();
-  displayedColumns: string[] = ['action','username','email']
+  displayedColumns: string[] = ['username','email','firstName','lastName','isActive','action']
 
   public dataSource: MatTableDataSource<IUser>
 
@@ -26,7 +28,7 @@ export class BoardAdminComponent implements OnInit , OnDestroy {
 
   private dataArray: any;
 
-  constructor(private userService: UserService,private _snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private userService: UserService,private _snackBar: MatSnackBar,public dialog: MatDialog,private router:Router,private storageService:StorageService) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -84,8 +86,13 @@ export class BoardAdminComponent implements OnInit , OnDestroy {
     ))
   }
 
-  public createUserDialog(){
-    let dialogRef = this.dialog.open(CreateUserComponent);
+  public createUserDialog(user:any){
+    let dialogRef = this.dialog.open(CreateUserComponent,{data:user});
   }
-  
+
+  public navigateToDetails(user:any){
+    this.storageService.setSelectedUser(user);
+    this.router.navigateByUrl("admin/user/details")
+  }
+
 }

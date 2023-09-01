@@ -2,38 +2,38 @@
     <h1>Virement Compte à Compte</h1>
     <mat-divider class="my-4"></mat-divider>
 
-    <form class="example-form">
+    <form class="example-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="row">
             <div class="col">
-        <mat-form-field class="example-full-width">
-            <mat-label>Compte à débiter</mat-label>
-            <mat-select>
-              <mat-option>
-                XXXX-XXXXX-XXXXX
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Compte à débiter</mat-label>
+                <mat-select name="from" [(ngModel)]="form.from" #from="ngModel" required>
+                  <ng-container *ngFor="let account of bankAccounts" >
+                    <mat-option *ngIf="account.isActive" [value]="account">{{ account.rib }} <small class="text-secondary">{{account.description}}</small></mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Devise</mat-label>
-            <mat-select>
-              <mat-option>
+            <mat-select name="devise" [(ngModel)]="form.devise" #devise="ngModel" required>
+              <mat-option value="TND">
                 TND
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Compte à créditer</mat-label>
-            <mat-select>
-              <mat-option>
-                XXXX-XXXXX-XXXXX
-              </mat-option>
+            <mat-select name="to" [(ngModel)]="form.to" #to="ngModel" required>
+              <ng-container *ngFor="let account of bankAccounts" >
+                <mat-option [value]="account">{{ account.rib }} <small class="text-secondary">{{account.description}}</small></mat-option>
+              </ng-container>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field class="example-full-width">
                 <mat-label>Montant</mat-label>
-                <input type="number" matInput placeholder="250">
+                <input type="number" matInput placeholder="250" min="0" name="amount" [(ngModel)]="form.amount" #amount="ngModel">
               </mat-form-field>
             
               <mat-form-field class="example-full-width">
@@ -43,7 +43,7 @@
 
               <mat-form-field class="example-full-width">
                 <mat-label>Date</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input matInput [matDatepicker]="picker" [min]="minDate" name="date" [(ngModel)]="form.date" #date="ngModel">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -51,12 +51,14 @@
         </div>
         <div class="row">
             <div class=" col-md-6 col-sm-12">
-                <button mat-raised-button color="accent" class="p-3 mx-2 mt-3 w-100">Approuver</button>
+                <button mat-raised-button color="accent" class="p-3 mx-2 mt-3 w-100">Confirmer</button>
             </div>
             <div class=" col-md-6 col-sm-12 ">
-                <button mat-stroked-button color="accent" class="p-3 mx-2 mt-3 w-100">Vider</button>
+                <button mat-stroked-button type="reset" color="accent" class="p-3 mx-2 mt-3 w-100">Vider</button>
             </div>
         </div>
-       
+        <div class="alert alert-warning" *ngIf="f.submitted && isFailed">
+          Transfer failed!<br />{{ errorMessage }}
+        </div>
     </form>
 </div>

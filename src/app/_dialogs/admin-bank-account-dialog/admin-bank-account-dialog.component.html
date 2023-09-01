@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Compte Bancaire</h1>
+<form class="example-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div mat-dialog-content>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>RIB</mat-label>
+            <input matInput name="firstName" [(ngModel)]="form.rib" required minlength="16" maxlength="16" [disabled]="!isAdmin"
+                #firstName="ngModel">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>IBAN</mat-label>
+            <input matInput name="iban" [(ngModel)]="form.iban" required minlength="24" maxlength="24" [disabled]="!isAdmin"
+                #lastName="ngModel">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Solde</mat-label>
+            <input matInput name="balance" [(ngModel)]="form.balance" required type="number" min="0" #balance="ngModel" [disabled]="!isAdmin">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <input matInput name="description" [(ngModel)]="form.description" #description="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && description.errors }">
+        </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Fermer</button>
+        <button mat-button cdkFocusInitial color="primary" type="submit">Ajouter</button>
+    </div>
+</form>
