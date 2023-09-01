@@ -9,7 +9,6 @@ Amennet is an Angular web application designed for managing bank accounts and pr
 - **Client Dashboard**: Clients can modify their account descriptions, make transfers between their accounts, or to another user's account. They can also access a chatbot for answering their questions.
 
 - **Authentication**: Users are required to log in with a valid username and password to access the application.
-Certainly, here's the "Prerequisites" section without code blocks:
 
 ---
 
