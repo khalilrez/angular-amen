@@ -1,27 +1,112 @@
-# AngularAmenbank
+# Amennet
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+Amennet is an Angular web application designed for managing bank accounts and providing a chatbot service. The application has two types of users: Admin and Client. Admins can manage users and their bank accounts, while Clients can modify their account descriptions, make transfers, and access a chatbot.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Admin Panel**: Admins have access to a panel where they can manage users and their bank accounts.
 
-## Code scaffolding
+- **Client Dashboard**: Clients can modify their account descriptions, make transfers between their accounts, or to another user's account. They can also access a chatbot for answering their questions.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Authentication**: Users are required to log in with a valid username and password to access the application.
+Certainly, here's the "Prerequisites" section without code blocks:
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Prerequisites
 
-## Running unit tests
+Before you can run the Amennet Angular application, you need to set up the backend server called "node-express-amen." Here are the prerequisites:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Install Node.js and npm:** Ensure that you have Node.js and npm (Node Package Manager) installed on your system. You can download and install them from the official Node.js website: [https://nodejs.org/](https://nodejs.org/)
 
-## Running end-to-end tests
+- **Clone the "node-express-amen" Repository:**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  1. Clone the "node-express-amen" repository using the following command:
+     ```
+     git clone https://github.com/khalilrez/node-express-amen.git
+     ```
 
-## Further help
+  2. Navigate to the backend directory:
+     ```
+     cd node-express-amen
+     ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Install Backend Dependencies:**
+
+  Install the required Node.js packages and dependencies by running the following command:
+     ```
+     npm install
+     ```
+
+- **Configure Backend:**
+
+  Configure the backend server according to your needs. You will need to set up a MySQL database.
+
+- **Start the Backend Server:**
+
+  Start the backend server using the following command:
+     ```
+     npm start
+     ```
+
+  The backend server should now be running and accessible at `http://localhost:8080`.
+
+---
+
+## Getting Started
+
+Follow these steps to get the project up and running on your local machine:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/khalilrez/angular-amen.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd angular-amen
+   ```
+
+3. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   ng serve -o
+   ```
+
+5. Open your web browser and access the application at `http://localhost:4200`.
+
+## Usage
+
+### Admin Access
+
+- Username: `admin`
+- Password: `123456`
+
+### Client Access
+
+- Username: `user[1,2,3,4,5,6,7,8,9,10]`
+- Password: `123456`
+
+## Contributing
+
+We welcome contributions from the community. If you'd like to contribute to the project, please follow our [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Special thanks to the Angular community for their support and contributions.
+
+## Contact
+
+If you have any questions or issues, please feel free to contact me at khalilrezgui0@gmail.com.
