@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService,private router:Router) { }
+  constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -34,12 +34,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         console.log(this.roles)
-        window.location.reload();
+        if (data.mfaEnabled) {
+          this.router.navigate(["verify-otp"]);
+          return;
+        }else{
+          window.location.reload()
+        }
       },
       error: err => {
         this.errorMessage = err.error.message;

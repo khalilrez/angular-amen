@@ -33,7 +33,7 @@
         <div class="card-chip"></div>
         <div class="card-holder" *ngIf="account.isActive">Active</div>
         <div class="card-holder" *ngIf="!account.isActive">Inactive</div>
-        <div class="card-number">{{account.rib}}</div>
+        <div class="card-number">{{account.rib | addDash}}</div>
         <div class="card-valid">SOLDE : {{account.balance}}</div>
       </div>
     </div>

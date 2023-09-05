@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,9 +17,10 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
   currentUrl: string;
+  isUserActive = true;
 
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) {
 
-  constructor(private storageService: StorageService, private authService: AuthService,private router:Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
@@ -26,7 +28,7 @@ export class AppComponent {
     });
   }
 
-  title="AmenNet"
+  title = "AmenNet"
   opened = true;
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
   ngOnInit() {
@@ -41,6 +43,8 @@ export class AppComponent {
 
     this.isAdmin = this.storageService.isAdmin();
     this.isLoggedIn = this.storageService.isLoggedIn();
+    this.isUserActive = this.storageService.isUserActive();
+
 
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
@@ -71,7 +75,7 @@ export class AppComponent {
   }
 
 
-  
+
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
@@ -80,13 +84,20 @@ export class AppComponent {
         this.isLoggedIn = false;
         this.isAdmin = false;
         this.sidenav.toggle();
-        this.opened=false;
+        this.opened = false;
         this.router.navigate(["/login"])
       },
       error: err => {
         console.log(err);
       }
     });
+  }
+
+  sendActivationEmail() {
+    this.authService.sendActivationEmail().subscribe((res) => {
+    }
+    )
+    this._snackBar.open("email envoyé", "Fermer");
   }
 
 }

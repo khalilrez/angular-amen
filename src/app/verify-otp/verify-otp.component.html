@@ -1,0 +1,24 @@
+<div class="container card p-5 text-center">
+    <h3>Veuillez entrer le code de vérification à usage unique envoyé à votre adresse e-mail et/ou téléphone</h3>
+    <div class="row my-3">
+<div class="otp-container">
+    <input (paste)="onPaste($event)"
+      *ngFor="let input of otpInputs; let i = index"
+      type="text"
+      [ngModel]="input"
+      minlength="1"
+      maxlength="1"
+      (ngModelChange)="onInputChange($event, i)"
+      (keydown)="onKeyDown($event, i)"
+      [disabled]="i > 0 && !otpInputs[i - 1]"
+    />
+  </div>
+</div>
+<div class="row justify-content-center my-4">       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    Veuillez verifier votre code.
+  </div></div>
+<div class="row justify-content-center my-4">  <button mat-raised-button (click)="verifyOtp()" color="primary" class="w-25">Procéder</button>
+<div class="row justify-content-center my-4">  <button mat-raised-button (click)="clearOtp()" class="w-25">Clear</button>
+
+</div>
+</div>

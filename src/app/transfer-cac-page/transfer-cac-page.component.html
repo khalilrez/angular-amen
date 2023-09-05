@@ -9,7 +9,7 @@
                 <mat-label>Compte à débiter</mat-label>
                 <mat-select name="from" [(ngModel)]="form.from" #from="ngModel" required>
                   <ng-container *ngFor="let account of bankAccounts" >
-                    <mat-option *ngIf="account.isActive" [value]="account">{{ account.rib }} <small class="text-secondary">{{account.description}}</small></mat-option>
+                    <mat-option *ngIf="account.isActive" [value]="account">{{ account.rib | addDash  }} <small class="text-secondary">{{account.description}}</small></mat-option>
                   </ng-container>
                 </mat-select>
               </mat-form-field>
@@ -25,7 +25,7 @@
             <mat-label>Compte à créditer</mat-label>
             <mat-select name="to" [(ngModel)]="form.to" #to="ngModel" required>
               <ng-container *ngFor="let account of bankAccounts" >
-                <mat-option [value]="account">{{ account.rib }} <small class="text-secondary">{{account.description}}</small></mat-option>
+                <mat-option [value]="account">{{ account.rib | addDash }} <small class="text-secondary">{{account.description}}</small></mat-option>
               </ng-container>
             </mat-select>
           </mat-form-field>
@@ -33,7 +33,7 @@
         <div class="col">
             <mat-form-field class="example-full-width">
                 <mat-label>Montant</mat-label>
-                <input type="number" matInput placeholder="250" min="0" name="amount" [(ngModel)]="form.amount" #amount="ngModel">
+                <input type="number" matInput placeholder="250" min="0" name="amount" [(ngModel)]="form.amount" #amount="ngModel" required>
               </mat-form-field>
             
               <mat-form-field class="example-full-width">

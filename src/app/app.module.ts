@@ -23,6 +23,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CreateUserComponent } from './_dialogs/create-user/create-user.component';
 import { AdminUserInfoComponent } from './admin-user-info/admin-user-info.component';
 import { AdminBankAccountDialogComponent } from './_dialogs/admin-bank-account-dialog/admin-bank-account-dialog.component';
+import { AddDashPipe } from './_pipes/add-dash.pipe';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { ActivationComponent } from './activation/activation.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { AdminBankAccountDialogComponent } from './_dialogs/admin-bank-account-d
     ForbiddenComponent,
     CreateUserComponent,
     AdminUserInfoComponent,
-    AdminBankAccountDialogComponent  ],
+    AdminBankAccountDialogComponent,
+    AddDashPipe,
+    VerifyOtpComponent,
+    ActivationComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,

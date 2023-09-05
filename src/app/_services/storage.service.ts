@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs'
+import { AuthService } from './auth.service';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 const USER_KEY = 'auth-user';
 
@@ -7,7 +9,7 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class StorageService {
-  constructor() {}
+  constructor(private authService:AuthService,private router:Router,private route: ActivatedRoute) {}
 
   clean(): void {
     window.sessionStorage.clear();
@@ -37,6 +39,16 @@ export class StorageService {
     }
   }
 
+  public isUserActive(): boolean{
+    const userString = window.sessionStorage.getItem(USER_KEY);
+    const user = JSON.parse(userString);
+    if(user.isActive){
+      return true
+    }else{
+      return false
+    }
+  }
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
@@ -51,5 +63,42 @@ export class StorageService {
   setSelectedUser(user:any){
     localStorage.setItem("selectedUser",JSON.stringify(user));
   } 
+
+  private isVerifyingOTP = false;
+
+  setIsVerifyingOTP() {
+   this.authService.changeStatus().subscribe((res)=>{
+    console.log(res);
+   },
+   (err)=>{
+    console.log(err)
+   })
+   return;
+  }
+
+  getIsVerifyingOTP(): boolean {
+    this.authService.checkStatus().subscribe(async (res)=>{
+      this.isVerifyingOTP = res.isVerifyingOtp
+      console.log(res);
+      if(res.getIsVerifyingOTP){
+        const targetPath = '/verify-otp';
+
+        // Get the current URL segments
+        const currentUrlSegments = this.route.snapshot.url.map(segment => segment.path).join('/');
+      
+        // Check if there is an ongoing navigation
+        if (this.router.navigated && currentUrlSegments !== targetPath) {
+          // Cancel the ongoing navigation and navigate to the desired path immediately
+          const extras: NavigationExtras = {
+            skipLocationChange: true, // This prevents the URL from being updated in the browser's address bar
+          };
+      
+          this.router.navigateByUrl(targetPath, extras);
+      }
+    }
+      return this.isVerifyingOTP;
+    })
+     return this.isVerifyingOTP;
+  }
   
 }

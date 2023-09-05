@@ -9,13 +9,13 @@
               <mat-label>Compte à débiter</mat-label>
               <mat-select name="from" [(ngModel)]="form.from" #from="ngModel" required>
                 <ng-container *ngFor="let account of bankAccounts" >
-                  <mat-option *ngIf="account.isActive" [value]="account">{{ account.rib }} <small class="text-secondary">{{account.description}}</small></mat-option>
+                  <mat-option *ngIf="account.isActive" [value]="account">{{ account.rib | addDash }} <small class="text-secondary">{{account.description}}</small></mat-option>
                 </ng-container>
               </mat-select>
             </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Devise</mat-label>
-          <mat-select name="devise" [(ngModel)]="form.devise" #devise="ngModel" required>
+          <mat-select name="devise" [(ngModel)]="form.devise" #devise="ngModel" value="form.devise | addDash" required>
             <mat-option value="TND">
               TND
             </mat-option>
@@ -23,7 +23,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Compte Bénéficiaire</mat-label>
-          <input matInput name="to" placeholder="RIB Bénéficiaire" minlength="16" maxlength="16" [(ngModel)]="form.to" #to="ngModel">
+          <input matInput name="to" placeholder="RIB Bénéficiaire" minlength="16" maxlength="16" [(ngModel)]="form.to" #to="ngModel" value="form.to | addDash">
         </mat-form-field>
       </div>
       <div class="col">
