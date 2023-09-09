@@ -16,6 +16,7 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { OtpVerificationGuard } from './_services/otp-guard.service';
 import { OtpAccessGuard } from './_services/otp-access-guard.service';
 import { ActivationComponent } from './activation/activation.component';
+import { TransferHistoryComponent } from './transfer-history/transfer-history.component';
 
 const routes: Routes = [
   {path:"account",component:BankAccountPageComponent,canActivate: [AuthGuard,OtpVerificationGuard]},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'verify-otp', component: VerifyOtpComponent,canActivate: [AuthGuard,OtpAccessGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'activate/:code', component: ActivationComponent},
+  { path: 'transfer-history/:rib', component: TransferHistoryComponent},
   { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard,OtpVerificationGuard] },
   { path: 'admin', component: BoardAdminComponent ,canActivate: [AuthGuard,RoleGuard]},
   { path: 'admin/user/details', component: AdminUserInfoComponent,canActivate: [AuthGuard,RoleGuard] },

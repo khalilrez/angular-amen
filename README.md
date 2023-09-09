@@ -48,7 +48,7 @@ Before you can run the Amennet Angular application, you need to set up the backe
      npm start
      ```
 
-  The backend server should now be running and accessible at `http://localhost:8080`.
+  The backend server should now be running and accessible at `http://localhost:3000`.
 
 ---
 

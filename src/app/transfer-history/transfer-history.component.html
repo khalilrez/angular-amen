@@ -1,0 +1,9 @@
+<h1>Virement Envoyé : </h1>
+<div *ngIf="sentTransfers">
+<app-transfer-table [transfers]="sentTransfers"></app-transfer-table>
+</div>
+<mat-divider class="my-5"></mat-divider>
+<h1>Virement Reçu : </h1>
+<div *ngIf="receivedTransfers">
+<app-transfer-table [transfers]="receivedTransfers"></app-transfer-table>
+</div>

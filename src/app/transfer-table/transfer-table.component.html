@@ -1,0 +1,48 @@
+<mat-form-field>
+    <mat-label>Recherche</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. rib" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z1">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> {{element.date | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> {{element.type}} </td>
+        </ng-container>
+        <ng-container matColumnDef="devise">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Devise </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> {{element.devise}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="done">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Effectué </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> {{element.done}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="from">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Envoyé Par </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> <span *ngIf="element.fromAccount"> {{element.fromAccount.rib}}</span><span *ngIf="!element.fromAccount"> ----</span> </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="to">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Reçu Par </th>
+            <td mat-cell *matCellDef="let element" class="left-text"> <span *ngIf="element.toAccount"> {{element.toAccount.rib}}</span> <span *ngIf="!element.toAccount"> ----</span> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+</div>

@@ -13,29 +13,20 @@
                         <mat-error *ngIf="isLoginFailed">
                             The username and password were not recognized
                         </mat-error>
-                        <div class="row">
-                            <mat-form-field>
-                                <div class="form-floating">
-
-                                    <input matInput class="w-100 form-control" name="username" required
+                                <div class="form-floating my-5">
+                                    <input class="form-control" name="username" required id="floatingInput"
                                         type="text" [(ngModel)]="form.username" required #username="ngModel" placeholder="Username"
                                         [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
                                     <label for="floatingInput">Username</label>
                                 </div>
-                            </mat-form-field>
-                        </div>
-                        <div class="row">
-                            <mat-form-field>
-                                <div class="form-floating">
-                                    <input type="password" class="w-100" class="form-control" name="password"
+                                <div class="form-floating my-5">
+                                    <input type="password" class="form-control" name="password" id="floatingPassword"
                                         [(ngModel)]="form.password" required placeholder="Password" minlength="6"
                                         #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
                                         required>
-                                    <label for="floatingPassword">Password</label>
+                                    <label for="floatingPassword">Mot De Passe</label>
                                 </div>
-                            </mat-form-field>
-                        </div>
-                        <div class="row">
+                        <div class="row ">
                             <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Connexion</button>
                         </div>
                     </form>

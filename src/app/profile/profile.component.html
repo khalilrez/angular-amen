@@ -1,23 +1,87 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
-    </header>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-    <strong>Roles:</strong>
-    <ul>
-      <li *ngFor="let role of currentUser.roles">
-        {{ role }}
-      </li>
-    </ul>
-  </div>
 
-  <button mat-raised-button color="primary" (click)="toggleMfa()">{{currentUser.mfaEnabled}}</button>
-  
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h2>{{ currentUser.username }}</h2>
+    </div>
+  </div>
+  <div class="row align-items-start">
+    <div class="col-sm-12 col-md-6">
+      <div class="form-container">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Information</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+              <mat-form-field>
+                <mat-label>Prénom</mat-label>
+                <input matInput formControlName="firstName" />
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="lastName" />
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Téléphone</mat-label>
+                <input matInput formControlName="phone" />
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <textarea matInput formControlName="address"></textarea>
+              </mat-form-field>
+            
+              <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+            </form>            
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-container">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Option de sécurité</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
+              <mat-form-field>
+                <mat-label>Nouveau Mot De Passe</mat-label>
+                <input matInput type="password" formControlName="newPassword" placeholder="***" />
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Vérifier Mot De Passe</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" placeholder="***" />
+              </mat-form-field>
+            
+              <button mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">Changer</button>
+            </form>
+            
+            <div class="mt-4">
+              <h6>Authentification à Facteur-Multiple</h6>
+              <button mat-raised-button [color]="currentUser.mfaEnabled ? 'primary' : 'warn'" (click)="toggleMfa()">
+                {{ currentUser.mfaEnabled ? 'Désactiver MFA' : 'Activer MFA' }}
+              </button>
+            </div>
+            
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

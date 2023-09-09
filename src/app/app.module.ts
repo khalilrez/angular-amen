@@ -26,6 +26,8 @@ import { AdminBankAccountDialogComponent } from './_dialogs/admin-bank-account-d
 import { AddDashPipe } from './_pipes/add-dash.pipe';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ActivationComponent } from './activation/activation.component';
+import { TransferHistoryComponent } from './transfer-history/transfer-history.component';
+import { TransferTableComponent } from './transfer-table/transfer-table.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ActivationComponent } from './activation/activation.component';
     AdminBankAccountDialogComponent,
     AddDashPipe,
     VerifyOtpComponent,
-    ActivationComponent  ],
+    ActivationComponent,
+    TransferHistoryComponent,
+    TransferTableComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -1,4 +1,4 @@
-FROM node:10 AS builder
+FROM node:18 AS builder
 # Set working directory
 WORKDIR /app
 # Copy all files from current directory to working dir in image

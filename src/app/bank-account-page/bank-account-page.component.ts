@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -18,7 +18,7 @@ import { AdminBankAccountDialogComponent } from '../_dialogs/admin-bank-account-
   templateUrl: './bank-account-page.component.html',
   styleUrls: ['./bank-account-page.component.scss']
 })
-export class BankAccountPageComponent {
+export class BankAccountPageComponent implements OnInit, AfterViewInit {
   user: IUser;
   private subs = new Subscription();
   displayedColumns: string[] = ['rib', 'iban', 'balance', 'description', 'isActive', 'action']

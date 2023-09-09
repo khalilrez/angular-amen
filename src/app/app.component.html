@@ -2,6 +2,7 @@
 <mat-toolbar color="primary" class="header">
   <span class="nav-tool-items"  *ngIf="currentUrl !== '/login' && currentUrl !== '/'">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+    <mat-icon routerLink="profile" class="hamburger px-5">person</mat-icon>
   </span>
   <div><img src="/assets/logo.png" alt="amen bank logo" width="150" srcset=""></div>
 
