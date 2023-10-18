@@ -94,18 +94,6 @@ Follow these steps to get the project up and running on your local machine:
 - Username: `user[1,2,3,4,5,6,7,8,9,10]`
 - Password: `123456`
 
-## Contributing
-
-We welcome contributions from the community. If you'd like to contribute to the project, please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Special thanks to the Angular community for their support and contributions.
-
 ## Contact
 
 If you have any questions or issues, please feel free to contact me at khalilrezgui0@gmail.com.
